@@ -4,9 +4,9 @@ Avtor - Žiga Potrebuješ
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
-## ANALIZA AMERIŠKEGA BDP OD LETA 1950 NAPREJ
+## Analiza ameriškega BDP od leta 1950 naprej
 
-V projektu bom analiziral gibanje šestih spremenljivk - realni BDP ($), realni BDP p.c. ($), rast realnega BDP, CPI, inflacijo in stopnjo brezposelnosti v Ameriki - od leta 1950 naprej. Zanima me splošno gibanje teh spremenljivk skozi čas in kaj se z njimi dogaja v nemirnejših obdobjih.  
+V projektu bom analiziral gibanje šestih spremenljivk - realni BDP ($), realni BDP p.c. ($), rast realnega BDP, CPI, inflacijo in stopnjo brezposelnosti v Ameriki - od leta 1950 naprej. Cilj je opaziti vzorce gibanja teh spremenljivk skozi čas, ter vpliv nemirnejših obdobjih na njih.
 
 Podatke bom pridobival na:
 - http://www.multpl.com/us-gdp-inflation-adjusted/table
