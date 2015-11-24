@@ -4,10 +4,17 @@ Avtor - Žiga Potrebuješ
 
 Repozitorij z gradivi pri predmetu APPR v študijskem letu 2015/16.
 
-## Tematika
+## ANALIZA AMERIŠKEGA BDP OD LETA 1950 NAPREJ
 
-Izbrali si boste temo, s katero se bo vaš projekt ukvarjal. Tukaj boste
-napisali, kje ste dobili podatke, ter kakšen je vaš cilj.
+V projektu bom analiziral gibanje šestih spremenljivk - realni BDP ($), realni BDP p.c. ($), rast realnega BDP, CPI, inflacijo in stopnjo brezposelnosti v Ameriki - od leta 1950 naprej. Zanima me splošno gibanje teh spremenljivk skozi čas in kaj se z njimi dogaja v nemirnejših obdobjih.  
+
+Podatke bom pridobival na:
+- http://www.multpl.com/us-gdp-inflation-adjusted/table
+- http://www.multpl.com/us-real-gdp-per-capita
+- http://www.multpl.com/us-real-gdp-growth-rate/table/by-year
+- http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/
+- http://www.usinflationcalculator.com/inflation/historical-inflation-rates/
+- http://www.multpl.com/unemployment/
 
 ## Program
 
