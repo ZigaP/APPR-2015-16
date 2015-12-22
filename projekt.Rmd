@@ -62,11 +62,31 @@ usinf <- usinf %>% arrange(Leto)
 - najbolj smiselna urejenost (predvsem za graf) se mi je zdela naraščujoča po letih, zato sem po potrebi graf še uredil po naraščujočih letnicah
 
 
-```{r grafi, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
+```{r graf1, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf1)
+```
+
+
+```{r graf2, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf2)
+```
+
+
+```{r graf3, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf3)
+```
+
+
+```{r graf4, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf4)
+```
+
+
+```{r graf5, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf5)
+```
+
+
+```{r graf6, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(graf6)
 ```
