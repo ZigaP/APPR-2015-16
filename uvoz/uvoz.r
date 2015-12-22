@@ -69,9 +69,9 @@ rownames(skupna.tabela) <- c(1950:2014)
 
 
 ### GRAFI
-ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`), col="red")+geom_line()
+graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line()
 graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line()
 graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line()
-graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))geom_line()
+graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line()
 graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line()
 graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line()

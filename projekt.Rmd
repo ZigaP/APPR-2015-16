@@ -32,4 +32,25 @@ V projektu bom analiziral spreminjanje BDP, BDP p.c., stopnjo rasti, indeks cen,
 
 # Obdelava, uvoz in čiščenje podatkov
 
-***
+```{r uvoz, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+source("uvoz/uvoz.r", encoding = "UTF-8")
+```
+
+Iz različnih spletnih naslovov sem uvozil podatke. Ker je enih podatkov več (npr. že od leta 1929), drugih pa manj sem se odločil, da bom naredil razpon od let 1950-2014.
+
+
+Primer kode, za uvoz in čiščenje tabele inflacij:
+```{r razpredelnice}
+naslov5 = "http://www.usinflationcalculator.com/inflation/historical-inflation-rates/"
+usinf <- readHTMLTable(naslov5, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
+usinf <- usinf[-c(1), c(1, 14)]
+usinf[[1]] <- strapplyc(usinf[[1]], "([0-9]+)$") %>% as.numeric()
+usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
+colnames(usinf) <- c("Leto", "Stopnja inflacije (v %)")
+usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
+usinf <- usinf %>% arrange(Leto)
+
+graf1
+```
+
+
