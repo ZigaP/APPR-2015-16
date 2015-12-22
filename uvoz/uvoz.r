@@ -1,4 +1,11 @@
 # 2. FAZA
+library(rvest)
+library(dplyr)
+library(gsubfn)
+library(httr)
+library(XML)
+require(ggplot2)
+
 
 naslov1 = "http://www.multpl.com/us-gdp-inflation-adjusted/table"
 gdp <- readHTMLTable(naslov1, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
@@ -61,4 +68,5 @@ skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Leto"]
 rownames(skupna.tabela) <- c(1950:2014)
 
 ### GRAFI
-graf1 <- ggplot()
+#graf1 <- ggplot(gdp, aes(x= Leto, y= BDP)
+                
