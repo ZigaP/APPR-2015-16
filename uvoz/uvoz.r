@@ -4,7 +4,7 @@ library(dplyr)
 library(gsubfn)
 library(httr)
 library(XML)
-require(ggplot2)
+library(ggplot2)
 
 
 naslov1 = "http://www.multpl.com/us-gdp-inflation-adjusted/table"
@@ -20,7 +20,7 @@ naslov2 = "http://www.multpl.com/us-real-gdp-per-capita/table/by-year"
 gdppc <- readHTMLTable(naslov2, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 gdppc[[1]] <- strapplyc(gdppc[[1]], "([0-9]+)$") %>% as.numeric()
 gdppc[[2]] <- gsub(",", "", gdppc[[2]]) %>% as.numeric()
-colnames(gdppc) <- c("Leto", "BDP p.c. (v $)")
+colnames(gdppc) <- c("Leto", "BDPp.c. (v $)")
 gdppc <- gdppc %>% filter(Leto < 2015 & Leto >= 1950)
 gdppc <- gdppc %>% arrange(Leto)
 
@@ -49,7 +49,7 @@ usinf <- readHTMLTable(naslov5, which=1, encoding = "UTF-8", stringsAsFactors = 
 usinf <- usinf[-c(1), c(1, 14)]
 usinf[[1]] <- strapplyc(usinf[[1]], "([0-9]+)$") %>% as.numeric()
 usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
-colnames(usinf) <- c("Leto", "Stopja inflacije (v %)")
+colnames(usinf) <- c("Leto", "Stopnja inflacije (v %)")
 usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
 usinf <- usinf %>% arrange(Leto)
 
@@ -58,7 +58,7 @@ naslov6 = "http://www.multpl.com/unemployment/table"
 unemp <- readHTMLTable(naslov6, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 unemp[[1]] <- strapplyc(unemp[[1]], "([0-9]+)$") %>% as.numeric()
 unemp[[2]] <- strapplyc(unemp[[2]], "^([0-9.]+)") %>% as.numeric()
-colnames(unemp) <- c("Leto", "Stopnja brezposelnosti (v %)")
+colnames(unemp) <- c("Leto", "Stopnja brezposlenosti (v %)")
 unemp <- unemp %>% filter(Leto <= 2014 & Leto >= 1950)
 unemp <- unemp %>% arrange(Leto)
 
@@ -67,6 +67,11 @@ skupna.tabela <- cbind(gdp, gdppc, gr, cpi, usinf, unemp)
 skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Leto"]
 rownames(skupna.tabela) <- c(1950:2014)
 
+
 ### GRAFI
-#graf1 <- ggplot(gdp, aes(x= Leto, y= BDP)
-                
+ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`), col="red")+geom_line()
+graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line()
+graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line()
+graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))geom_line()
+graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line()
+graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line()
