@@ -1,11 +1,4 @@
 # 2. FAZA
-library(rvest)
-library(dplyr)
-library(gsubfn)
-library(httr)
-library(XML)
-library(ggplot2)
-
 
 naslov1 = "http://www.multpl.com/us-gdp-inflation-adjusted/table"
 gdp <- readHTMLTable(naslov1, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
@@ -69,9 +62,15 @@ rownames(skupna.tabela) <- c(1950:2014)
 
 
 ### GRAFI
-graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line()
-graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line()
-graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line()
-graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line()
-graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line()
-graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line()
+graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line(color='red')+
+                            ggtitle("BDP")
+graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line(color='green')+
+                            ggtitle("BDP per capita skozi leta")
+graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line(color='blue')+
+                            ggtitle("Stopnja rasti skozi leta")
+graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line(color='orange')+
+                            ggtitle("Spreminjanje indeksa cen")
+graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line(color='purple')+
+                            ggtitle("Spreminjanje inflacije v ZDA")
+graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line(color='black')+
+                            ggtitle("Brezposelnost skozi leta")

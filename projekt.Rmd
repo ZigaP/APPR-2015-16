@@ -49,8 +49,6 @@ usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
 colnames(usinf) <- c("Leto", "Stopnja inflacije (v %)")
 usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
 usinf <- usinf %>% arrange(Leto)
-
-graf1
 ```
 
 
