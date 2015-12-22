@@ -69,15 +69,16 @@ rownames(skupna.tabela) <- c(1950:2014)
 
 
 ### GRAFI
-graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line(color='red')+
+graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line(size=1, color='red')+
                             ggtitle("BDP")
-graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line(color='green')+
+graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line(size=1, color='darkgreen')+
                             ggtitle("BDP per capita skozi leta")
-graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line(color='blue')+
-                            ggtitle("Stopnja rasti skozi leta")
-graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line(color='orange')+
+graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line(size=1, color='blue')+
+                            ggtitle("Stopnja rasti skozi leta (v%)")
+graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line(size=1, color='orange')+
                             ggtitle("Spreminjanje indeksa cen")
-graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line(color='purple')+
-                            ggtitle("Spreminjanje inflacije v ZDA")
-graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line(color='black')+
-                            ggtitle("Brezposelnost skozi leta")
+graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line(size=1, color='purple')+
+                            ggtitle("Stopnja inflacije v ZDA (v %)")
+graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line(size=1, color='black')+
+                            ggtitle("Brezposelnost skozi leta (v %)")
+
