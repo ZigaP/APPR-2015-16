@@ -40,7 +40,7 @@ Iz različnih spletnih naslovov sem uvozil podatke. Ker je enih podatkov več (n
 
 
 Primer kode, za uvoz in čiščenje tabele inflacij:
-```{r razpredelnice}
+```{r razpredelnice, warning=FALSE, results='hide', message=FALSE}
 naslov5 = "http://www.usinflationcalculator.com/inflation/historical-inflation-rates/"
 usinf <- readHTMLTable(naslov5, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 usinf <- usinf[-c(1), c(1, 14)]
@@ -51,4 +51,22 @@ usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
 usinf <- usinf %>% arrange(Leto)
 ```
 
+Čiščenje podatkov je potekalo po sledečem postopku:
 
+- podatke sem pridobil iz spleta s pomočjo ukaza readHTMLTable
+- če je imela tabela stolpce z nerelevantnimi podatki sem jih izpustil
+- ker sem želel v prvem stolpcu vsake tabele letnico, ki jo je program prepoznal kot numerično vrednost in ne kot niz, sem iz prvih stolpcev pobral le cifre 0-9 (ki so bile na koncu niza), in jih zapisal kot numerično vrednost
+- za lažjo obdelavo podatkov sem tudi v drugem stolpcu želel imeti numerične vrednosti. Zato sem zopet iz vsake celice vzel le cifre od 0-9, upošteval predznak - in dane vrednosti zapisal nazaj kot numerične vrednosti
+- nato sem poimenoval stolpce
+- dodal sem filter, ki mi je izpisal samo vrstice kjer je leto <= 2014 in leto >= 1950
+- najbolj smiselna urejenost (predvsem za graf) se mi je zdela naraščujoča po letih, zato sem po potrebi graf še uredil po naraščujočih letnicah
+
+
+```{r grafi, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
+plot(graf1)
+plot(graf2)
+plot(graf3)
+plot(graf4)
+plot(graf5)
+plot(graf6)
+```

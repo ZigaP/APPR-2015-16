@@ -1,4 +1,11 @@
 # 2. FAZA
+library(rvest)
+library(dplyr)
+library(gsubfn)
+library(httr)
+library(XML)
+library(ggplot2)
+
 
 naslov1 = "http://www.multpl.com/us-gdp-inflation-adjusted/table"
 gdp <- readHTMLTable(naslov1, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)

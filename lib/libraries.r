@@ -1,6 +1,4 @@
-library(rvest)
 library(dplyr)
-library(gsubfn)
 library(httr)
 library(XML)
 library(ggplot2)
