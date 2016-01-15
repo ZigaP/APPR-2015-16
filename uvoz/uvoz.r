@@ -20,18 +20,18 @@ naslov2 = "http://www.multpl.com/us-real-gdp-per-capita/table/by-year"
 gdppc <- readHTMLTable(naslov2, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 gdppc[[1]] <- strapplyc(gdppc[[1]], "([0-9]+)$") %>% as.numeric()
 gdppc[[2]] <- gsub(",", "", gdppc[[2]]) %>% as.numeric()
-colnames(gdppc) <- c("Leto", "BDPp.c. (v $)")
-gdppc <- gdppc %>% filter(Leto < 2015 & Leto >= 1950)
-gdppc <- gdppc %>% arrange(Leto)
+colnames(gdppc) <- c("Letnica", "BDPp.c. (v $)")
+gdppc <- gdppc %>% filter(Letnica < 2015 & Letnica >= 1950)
+gdppc <- gdppc %>% arrange(Letnica)
 
 
 naslov3 = "http://www.multpl.com/us-real-gdp-growth-rate/table/by-year"
 gr <- readHTMLTable(naslov3, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 gr[[1]] <- strapplyc(gr[[1]], "([0-9]+)$") %>% as.numeric()
 gr[[2]] <- strapplyc(gr[[2]], "^([-, 0-9.]+)") %>% as.numeric()
-colnames(gr) <- c("Leto", "Stopnja rasti")
-gr <- gr %>% filter(Leto <= 2014 & Leto >=1950)
-gr <- gr %>% arrange(Leto)
+colnames(gr) <- c("Letnica", "Stopnja rasti")
+gr <- gr %>% filter(Letnica <= 2014 & Letnica >=1950)
+gr <- gr %>% arrange(Letnica)
 
 
 naslov4 = "http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/"
@@ -39,9 +39,9 @@ cpi <- htmlTreeParse(naslov4, encoding = "UTF-8", useInternal = TRUE)
 cpi <- readHTMLTable(naslov4,which=1, stringsAsFactors = FALSE)
 cpi <- cpi[-c(1,2), c(1, 14)]
 cpi <- apply(cpi, 2, . %>% strapplyc("([0-9.]+)") %>% as.numeric(.)) %>% data.frame()
-colnames(cpi) <- c("Leto", "Indeks cen")
-cpi <- cpi %>% filter(Leto <= 2014 & Leto >= 1950)
-cpi <- cpi %>% arrange(Leto)
+colnames(cpi) <- c("Letnica", "Indeks cen")
+cpi <- cpi %>% filter(Letnica <= 2014 & Letnica >= 1950)
+cpi <- cpi %>% arrange(Letnica)
 
 
 naslov5 = "http://www.usinflationcalculator.com/inflation/historical-inflation-rates/"
@@ -49,36 +49,36 @@ usinf <- readHTMLTable(naslov5, which=1, encoding = "UTF-8", stringsAsFactors = 
 usinf <- usinf[-c(1), c(1, 14)]
 usinf[[1]] <- strapplyc(usinf[[1]], "([0-9]+)$") %>% as.numeric()
 usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
-colnames(usinf) <- c("Leto", "Stopnja inflacije (v %)")
-usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
-usinf <- usinf %>% arrange(Leto)
+colnames(usinf) <- c("Letnica", "Stopnja inflacije (v %)")
+usinf <- usinf %>% filter(Letnica <= 2014 & Letnica >= 1950)
+usinf <- usinf %>% arrange(Letnica)
 
 
 naslov6 = "http://www.multpl.com/unemployment/table"
 unemp <- readHTMLTable(naslov6, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 unemp[[1]] <- strapplyc(unemp[[1]], "([0-9]+)$") %>% as.numeric()
 unemp[[2]] <- strapplyc(unemp[[2]], "^([0-9.]+)") %>% as.numeric()
-colnames(unemp) <- c("Leto", "Stopnja brezposlenosti (v %)")
-unemp <- unemp %>% filter(Leto <= 2014 & Leto >= 1950)
-unemp <- unemp %>% arrange(Leto)
+colnames(unemp) <- c("Letnica", "Stopnja brezposlenosti (v %)")
+unemp <- unemp %>% filter(Letnica <= 2014 & Letnica >= 1950)
+unemp <- unemp %>% arrange(Letnica)
 
 
 skupna.tabela <- cbind(gdp, gdppc, gr, cpi, usinf, unemp)
-skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Leto"]
-rownames(skupna.tabela) <- c(1950:2014)
+skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Letnica"]
+
 
 
 ### GRAFI
 graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line(size=1, color='red')+
                             ggtitle("BDP")
-graf2 <- ggplot(data = gdppc, aes(x=Leto, y=`BDPp.c. (v $)`))+geom_line(size=1, color='darkgreen')+
+graf2 <- ggplot(data = gdppc, aes(x=Letnica, y=`BDPp.c. (v $)`))+geom_line(size=1, color='darkgreen')+
                             ggtitle("BDP per capita skozi leta")
-graf3 <- ggplot(data = gr, aes(x=Leto, y=`Stopnja rasti`))+geom_line(size=1, color='blue')+
+graf3 <- ggplot(data = gr, aes(x=Letnica, y=`Stopnja rasti`))+geom_line(size=1, color='blue')+
                             ggtitle("Stopnja rasti skozi leta (v%)")
-graf4 <- ggplot(data = cpi, aes(x=Leto, y=`Indeks cen`))+geom_line(size=1, color='orange')+
+graf4 <- ggplot(data = cpi, aes(x=Letnica, y=`Indeks cen`))+geom_line(size=1, color='orange')+
                             ggtitle("Spreminjanje indeksa cen")
-graf5 <- ggplot(data = usinf, aes(x=Leto, y=`Stopnja inflacije (v %)`))+geom_line(size=1, color='purple')+
+graf5 <- ggplot(data = usinf, aes(x=Letnica, y=`Stopnja inflacije (v %)`))+geom_line(size=1, color='purple')+
                             ggtitle("Stopnja inflacije v ZDA (v %)")
-graf6 <- ggplot(data = unemp, aes(x=Leto, y=`Stopnja brezposlenosti (v %)`))+geom_line(size=1, color='black')+
+graf6 <- ggplot(data = unemp, aes(x=Letnica, y=`Stopnja brezposlenosti (v %)`))+geom_line(size=1, color='black')+
                             ggtitle("Brezposelnost skozi leta (v %)")
 

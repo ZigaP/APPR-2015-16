@@ -46,9 +46,9 @@ usinf <- readHTMLTable(naslov5, which=1, encoding = "UTF-8", stringsAsFactors = 
 usinf <- usinf[-c(1), c(1, 14)]
 usinf[[1]] <- strapplyc(usinf[[1]], "([0-9]+)$") %>% as.numeric()
 usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
-colnames(usinf) <- c("Leto", "Stopnja inflacije (v %)")
-usinf <- usinf %>% filter(Leto <= 2014 & Leto >= 1950)
-usinf <- usinf %>% arrange(Leto)
+colnames(usinf) <- c("Letnica", "Stopnja inflacije (v %)")
+usinf <- usinf %>% filter(Letnica <= 2014 & Letnica >= 1950)
+usinf <- usinf %>% arrange(Letnica)
 ```
 
 Čiščenje podatkov je potekalo po sledečem postopku:
