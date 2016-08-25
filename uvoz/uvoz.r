@@ -12,7 +12,7 @@ gdp <- readHTMLTable(naslov1, which=1, encoding = "UTF-8", stringsAsFactors = FA
 gdp[[1]] <- strapplyc(gdp[[1]], "([0-9]+)$") %>% as.numeric()
 gdp[[2]] <- strapplyc(gdp[[2]], "^([0-9.]+)") %>% as.numeric()
 colnames(gdp) <- c("Leto", "BDP (v trilijonih $)")
-gdp <- gdp %>% filter(Leto <= 2014 & Leto >= 1950)
+gdp <- gdp %>% filter(Leto <= 2015 & Leto >= 1950)
 gdp <- gdp %>% arrange(Leto)
 
 
@@ -21,7 +21,7 @@ gdppc <- readHTMLTable(naslov2, which=1, encoding = "UTF-8", stringsAsFactors = 
 gdppc[[1]] <- strapplyc(gdppc[[1]], "([0-9]+)$") %>% as.numeric()
 gdppc[[2]] <- gsub(",", "", gdppc[[2]]) %>% as.numeric()
 colnames(gdppc) <- c("Letnica", "BDPp.c. (v $)")
-gdppc <- gdppc %>% filter(Letnica < 2015 & Letnica >= 1950)
+gdppc <- gdppc %>% filter(Letnica <= 2015 & Letnica >= 1950)
 gdppc <- gdppc %>% arrange(Letnica)
 
 
@@ -30,7 +30,7 @@ gr <- readHTMLTable(naslov3, which=1, encoding = "UTF-8", stringsAsFactors = FAL
 gr[[1]] <- strapplyc(gr[[1]], "([0-9]+)$") %>% as.numeric()
 gr[[2]] <- strapplyc(gr[[2]], "^([-, 0-9.]+)") %>% as.numeric()
 colnames(gr) <- c("Letnica", "Stopnja rasti")
-gr <- gr %>% filter(Letnica <= 2014 & Letnica >=1950)
+gr <- gr %>% filter(Letnica <= 2015 & Letnica >=1950)
 gr <- gr %>% arrange(Letnica)
 
 
@@ -40,7 +40,7 @@ cpi <- readHTMLTable(naslov4,which=1, stringsAsFactors = FALSE)
 cpi <- cpi[-c(1,2), c(1, 14)]
 cpi <- apply(cpi, 2, . %>% strapplyc("([0-9.]+)") %>% as.numeric(.)) %>% data.frame()
 colnames(cpi) <- c("Letnica", "Indeks cen")
-cpi <- cpi %>% filter(Letnica <= 2014 & Letnica >= 1950)
+cpi <- cpi %>% filter(Letnica <= 2015 & Letnica >= 1950)
 cpi <- cpi %>% arrange(Letnica)
 
 
@@ -50,7 +50,7 @@ usinf <- usinf[-c(1), c(1, 14)]
 usinf[[1]] <- strapplyc(usinf[[1]], "([0-9]+)$") %>% as.numeric()
 usinf[[2]] <- strapplyc(usinf[[2]], "^([-, 0-9.]+)") %>% as.numeric()
 colnames(usinf) <- c("Letnica", "Stopnja inflacije (v %)")
-usinf <- usinf %>% filter(Letnica <= 2014 & Letnica >= 1950)
+usinf <- usinf %>% filter(Letnica <= 2015 & Letnica >= 1950)
 usinf <- usinf %>% arrange(Letnica)
 
 
@@ -59,12 +59,22 @@ unemp <- readHTMLTable(naslov6, which=1, encoding = "UTF-8", stringsAsFactors = 
 unemp[[1]] <- strapplyc(unemp[[1]], "([0-9]+)$") %>% as.numeric()
 unemp[[2]] <- strapplyc(unemp[[2]], "^([0-9.]+)") %>% as.numeric()
 colnames(unemp) <- c("Letnica", "Stopnja brezposlenosti (v %)")
-unemp <- unemp %>% filter(Letnica <= 2014 & Letnica >= 1950)
+unemp <- unemp %>% filter(Letnica <= 2015 & Letnica >= 1950)
 unemp <- unemp %>% arrange(Letnica)
 
 
 skupna.tabela <- cbind(gdp, gdppc, gr, cpi, usinf, unemp)
 skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Letnica"]
+
+
+naslov7 <- "http://www.usgovernmentspending.com/gdp_by_state" 
+stran <- html_session(naslov7) %>% read_html(encoding = "UTF-8") 
+GSP_tabele <- stran %>% html_nodes(xpath ="//table") 
+GSP <- GSP_tabele %>% .[[7]] %>% html_table(fill = TRUE) 
+GSP <- GSP[c(-1,-46,-54),c(2,5)] 
+names(GSP) <- c("Država", "GSP (v milijon $)") 
+GSP[2] <- apply(GSP[2], 2, .%>% gsub("\\$", "", .) %>% gsub("\\,", "", .)) %>% as.numeric()
+
 
 
 
@@ -85,3 +95,4 @@ graf6 <- ggplot(data = unemp, aes(x=Letnica, y=`Stopnja brezposlenosti (v %)`))+
 ### ZEMLJEVID
 naslov7 = "https://en.wikipedia.org/wiki/List_of_U.S._states_by_GDP"
 gdpstates <- readHTMLTable(naslov7, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
+
