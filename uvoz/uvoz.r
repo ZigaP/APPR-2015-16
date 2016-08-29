@@ -1,10 +1,5 @@
 # 2. FAZA
-library(rvest)
-library(dplyr)
-library(gsubfn)
-library(httr)
-library(XML)
-library(ggplot2)
+source("lib/libraries.r", encoding = "UTF-8")
 
 
 naslov1 = "http://www.multpl.com/us-gdp-inflation-adjusted/table"
@@ -92,7 +87,5 @@ graf5 <- ggplot(data = usinf, aes(x=Letnica, y=`Stopnja inflacije (v %)`))+geom_
 graf6 <- ggplot(data = unemp, aes(x=Letnica, y=`Stopnja brezposlenosti (v %)`))+geom_line(size=1, color='black')+
                             ggtitle("Brezposelnost skozi leta (v %)")
 
-### ZEMLJEVID
-naslov7 = "https://en.wikipedia.org/wiki/List_of_U.S._states_by_GDP"
-gdpstates <- readHTMLTable(naslov7, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
+
 

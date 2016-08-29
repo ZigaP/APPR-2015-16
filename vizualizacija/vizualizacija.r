@@ -1,8 +1,18 @@
 #3. FAZA - UVOZ ZEMLJEVIDOV
+source("lib/libraries.r", encoding = "UTF-8")
+
 zda <- uvozi.zemljevid("http://baza.fmf.uni-lj.si/states_21basic.zip", "states")
 
-row.names(GSP) <- GSP[[1]]
-GSP2 <- preuredi(GSP, zda, "STATE_NAME")
+
+
+capitals <- read.csv("podatki/uscapitals.csv")
+row.names(capitals) <- capitals$state
+capitals <- preuredi(capitals, zda, "STATE_NAME")
+capitals$US.capital <- capitals$capital == "Washington"
+
+GSP2<-GSP
+row.names(GSP2) <- GSP2[[1]]
+GSP2 <- preuredi(GSP2, zda, "STATE_NAME")
 
 zda$GSP <- GSP2$`GSP..v.milijon...`
 usa <- pretvori.zemljevid(zda)
