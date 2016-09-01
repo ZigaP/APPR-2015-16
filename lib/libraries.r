@@ -4,6 +4,7 @@ library(gsubfn)
 library(httr)
 library(XML)
 library(ggplot2)
+library(knitr)
 
 pretvori.zemljevid <- function(zemljevid) {
   fo <- fortify(zemljevid)

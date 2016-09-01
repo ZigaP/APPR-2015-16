@@ -61,6 +61,7 @@ unemp <- unemp %>% arrange(Letnica)
 skupna.tabela <- cbind(gdp, gdppc, gr, cpi, usinf, unemp)
 skupna.tabela <- skupna.tabela[names(skupna.tabela) != "Letnica"]
 
+skupna.tabela2 <- skupna.tabela %>% arrange(-Leto)
 
 naslov7 <- "http://www.usgovernmentspending.com/gdp_by_state" 
 stran <- html_session(naslov7) %>% read_html(encoding = "UTF-8") 

@@ -19,7 +19,7 @@ source("lib/libraries.r", encoding = "UTF-8")
 
 # Izbira teme
 
-V projektu bom analiziral spreminjanje BDP, BDP p.c., stopnjo rasti, indeks cen, stopnjo inflacije in stopnjo brezposelnosti v ZDA od leta 1950 do 2014. Cilj je opaziti vzorce gibanja teh spremenljivk skozi čas, ter vpliv nemirnejših obdobjih na njih. Podatke bom pridobival na:
+V projektu bom analiziral spreminjanje BDP, BDP p.c., stopnjo rasti, indeks cen, stopnjo inflacije in stopnjo brezposelnosti v ZDA od leta 1950 do 2015. Analiziral bom tudi BDP po posameznih zveznih državah. Cilj je opaziti, kako se te spremenljivke spreminjajo skozi čas in kako se obnašajo v različnih časovnih obdobjih, ter opaziti katere zvezne države so najbogatejše in katere najrevnejše.
 
 - http://www.multpl.com/us-gdp-inflation-adjusted/table
 - http://www.multpl.com/us-real-gdp-per-capita
@@ -27,6 +27,7 @@ V projektu bom analiziral spreminjanje BDP, BDP p.c., stopnjo rasti, indeks cen,
 - http://www.usinflationcalculator.com/inflation/consumer-price-index-and-annual-percent-changes-from-1913-to-2008/
 - http://www.usinflationcalculator.com/inflation/historical-inflation-rates/
 - http://www.multpl.com/unemployment/
+- http://www.usgovernmentspending.com/gdp_by_state
 
 ***
 
@@ -36,7 +37,7 @@ V projektu bom analiziral spreminjanje BDP, BDP p.c., stopnjo rasti, indeks cen,
 source("uvoz/uvoz.r", encoding = "UTF-8")
 ```
 
-Iz različnih spletnih naslovov sem uvozil podatke. Ker je enih podatkov več (npr. že od leta 1929), drugih pa manj sem se odločil, da bom naredil razpon od let 1950-2014.
+Iz različnih spletnih naslovov sem uvozil podatke. Ker je enih podatkov več (npr. že od leta 1929), drugih pa manj sem se odločil, da bom naredil razpon od let 1950-2015.
 
 
 Primer kode, za uvoz in čiščenje tabele inflacij:
@@ -58,11 +59,21 @@ usinf <- usinf %>% arrange(Letnica)
 - ker sem želel v prvem stolpcu vsake tabele letnico, ki jo je program prepoznal kot numerično vrednost in ne kot niz, sem iz prvih stolpcev pobral le cifre 0-9 (ki so bile na koncu niza), in jih zapisal kot numerično vrednost
 - za lažjo obdelavo podatkov sem tudi v drugem stolpcu želel imeti numerične vrednosti. Zato sem zopet iz vsake celice vzel le cifre od 0-9, upošteval predznak - in dane vrednosti zapisal nazaj kot numerične vrednosti
 - nato sem poimenoval stolpce
-- dodal sem filter, ki mi je izpisal samo vrstice kjer je leto <= 2014 in leto >= 1950
-- najbolj smiselna urejenost (predvsem za graf) se mi je zdela naraščujoča po letih, zato sem po potrebi graf še uredil po naraščujočih letnicah
+- dodal sem filter, ki mi je izpisal samo vrstice kjer je leto <= 2015 in leto >= 1950
+- najbolj smiselna urejenost (predvsem za graf) se mi je zdela naraščujoča po letih, zato sem graf uredil po naraščujočih letnicah
+
+Podatke iz vseh tabel sem tudi združil v skupno tabelo, kot je prikazano spodaj. Spodaj je vzorec tabele za zadnjih nekaj let:
+
+```{r skupna, echo=FALSE}
+kable(head(skupna.tabela2[c(1, 2, 3, 4)]))
+```
+
+```{r skupna2, echo=FALSE}
+kable(head(skupna.tabela2[c(1, 5, 6, 7)]))
+```
 
 
-```{r graf1, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
+```{r graf1, echo=FALSE, warning=FALSE, results='hide', message=FALSE, width = 2, height = 2}
 plot(graf1)
 ```
 
