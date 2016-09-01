@@ -75,8 +75,8 @@ GSP[2] <- apply(GSP[2], 2, .%>% gsub("\\$", "", .) %>% gsub("\\,", "", .)) %>% a
 
 
 ### GRAFI
-graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`))+geom_line(size=1, color='red')+
-                            ggtitle("BDP")
+graf1 <- ggplot(data = gdp, aes(x=Leto, y=`BDP (v trilijonih $)`), height=5, width=5)+
+                            geom_line(size=1, color='red')+ggtitle("BDP")
 graf2 <- ggplot(data = gdppc, aes(x=Letnica, y=`BDPp.c. (v $)`))+geom_line(size=1, color='darkgreen')+
                             ggtitle("BDP per capita skozi leta")
 graf3 <- ggplot(data = gr, aes(x=Letnica, y=`Stopnja rasti`))+geom_line(size=1, color='blue')+
