@@ -209,6 +209,7 @@ plot(ZEM1)
 ```
 
 ## Ugotovitve
+
 V skupini z najvišjim BDP po zvezni državi je le Kalifornija, saj izrazito odstopa od povprečja. 
 
 V skupini z drugim najvišjim BDP sta državi Texas in New York. Na zemljevidu sta označeni obe, kar ni presenetljivo, ker obe odstopata ravno enako od njunega povprečja.
