@@ -70,7 +70,7 @@ GSP <- GSP_tabele %>% .[[7]] %>% html_table(fill = TRUE)
 GSP <- GSP[c(-1,-46,-54),c(2,5)] 
 names(GSP) <- c("Država", "GSP (v milijon $)") 
 GSP[2] <- apply(GSP[2], 2, .%>% gsub("\\$", "", .) %>% gsub("\\,", "", .)) %>% as.numeric()
-
+GSP3 <- GSP %>% arrange (`GSP (v milijon $)`)
 
 
 

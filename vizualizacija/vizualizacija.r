@@ -24,26 +24,27 @@ ZDA.K <- ggplot() + geom_polygon(data = ZEM_CONT,
                                 aes(x = long, y = lat,
                                     group = group, fill = GSP), color = "grey")
 
-ZDA.K <- ZDA.K + scale_fill_gradient(low = "#776633", high = "#443344")+ 
-  guides(fill = guide_colorbar(title = "GSP (v milijardan $)")) + 
+ZDA.K <- ZDA.K + scale_fill_gradient(low = "#4169E1", high = "#00008B")+
+  guides(fill = guide_colorbar(title = "GSP (v milijardah $)")) + 
   ggtitle("BDP po zveznih državah (v milijardah $)")
 
 ZDA.K <- ZDA.K + labs(x="", y="")+ scale_y_continuous(breaks=NULL)+ 
   scale_x_continuous(breaks=NULL)+ theme_minimal()
 
 
-capitals.cont <- capitals %>% filter(! state %in% c("Alaska", "Hawaii"))
+capitals.cont <- capitals %>% filter(capital == "Washington")
 
 
-ZDA.K <- ZDA.K + geom_point(data = capitals.cont, color = "green", 
+ZDA.K <- ZDA.K + geom_point(data = capitals.cont, color = "red", 
                           aes(x = long, y = lat, shape = US.capital, size = US.capital)) +
   geom_text(data = capitals.cont, 
-            aes(x = long, y = lat, label = capital, vjust = US.capital, size = US.capital)) +
+            aes(x = long, y = lat, label = capital, vjust = US.capital, size = US.capital), 
+            color="black") +
   scale_shape_manual(values = c(20, 15), guide = FALSE) + 
   scale_size_manual(values = c(3, 5), guide = FALSE) + 
   discrete_scale(aesthetics = "vjust", scale_name = NULL, palette = . %>% c(0, 2), guide = FALSE) 
 
-print(ZDA.K)
+#print(ZDA.K)
 
 #NE - CONTINENTAL
 
@@ -53,7 +54,7 @@ ZDA.NK <- ggplot() + geom_polygon(data = ZEM_NCONT,
                                  aes(x = long, y = lat,
                                      group = group, fill = GSP), color = "grey")
 
-ZDA.NK <- ZDA.NK + scale_fill_gradient(low = "#776633", high = "#443344")+ 
+ZDA.NK <- ZDA.NK + scale_fill_gradient(low = "#4169E1", high = "#00008B")+ 
   guides(fill = guide_colorbar(title = "GSP (v milijardan $)")) + 
   ggtitle("BDP po zveznih državah (v milijardah $)")
 
@@ -64,12 +65,13 @@ ZDA.NK <- ZDA.NK + labs(x="", y="")+ scale_y_continuous(breaks=NULL)+
 capitals.Ncont <- capitals %>% filter(state %in% c("Alaska", "Hawaii"))
 
 
-ZDA.NK <- ZDA.NK + geom_point(data = capitals.Ncont, color = "green", 
-                            aes(x = long, y = lat, shape = US.capital, size = US.capital)) +
+ZDA.NK <- ZDA.NK + geom_point(data = capitals.Ncont, color = "red", 
+                            aes(x = long, y = lat, shape = US.capital)) +
   geom_text(data = capitals.Ncont, 
-            aes(x = long, y = lat, label = capital, vjust = US.capital, size = US.capital)) +
+            aes(x = long, y = lat, label = capital, vjust = US.capital),
+            color="black") +
   scale_shape_manual(values = c(20, 15), guide = FALSE) + 
   scale_size_manual(values = c(5, 8), guide = FALSE) + 
   discrete_scale(aesthetics = "vjust", scale_name = NULL, palette = . %>% c(0, 2), guide = FALSE) 
 
-print(ZDA.NK)
+#print(ZDA.NK)
