@@ -203,7 +203,7 @@ Podatke o BDP-ju po zveznih državah sem razdelil v 5 skupin, glede na višino B
 ```{r analiza, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
 source("analiza/analiza.r", encoding = "UTF-8")
 ```
-z
+
 ```{r skupine, echo=FALSE}
 plot(ZEM1)
 ```
