@@ -62,7 +62,7 @@ usinf <- usinf %>% arrange(Letnica)
 - dodal sem filter, ki mi je izpisal samo vrstice kjer je leto <= 2015 in leto >= 1950
 - najbolj smiselna urejenost (predvsem za graf) se mi je zdela naraščujoča po letih, zato sem graf uredil po naraščujočih letnicah
 
-Podatke iz vseh tabel sem tudi združil v skupno tabelo, kot je prikazano spodaj. Spodaj je vzorec tabele za zadnjih nekaj let:
+Uvozil sem 6 tabel, vsako tabelo za svojo obravnavano spremenljivko. Podatke iz vseh tabel sem tudi združil v skupno tabelo, kot je prikazano spodaj. Spodaj je vzorec tabele za zadnjih nekaj let:
 
 ```{r skupna, echo=FALSE}
 kable(head(skupna.tabela2[c(1, 2, 3, 4)]))
@@ -72,6 +72,21 @@ kable(head(skupna.tabela2[c(1, 2, 3, 4)]))
 kable(head(skupna.tabela2[c(1, 5, 6, 7)]))
 ```
 
+Moje spremenljivke pa so:
+
+- __Leto__ (1950-2015) - _številska spremenljivka_
+
+- __BDP__ - _številska spremenljivka_
+
+- __BDP p.c.__ - _številska spremenljivka_
+
+- __Stopnja rasti__ - _številska spremenljivka_
+
+- __Indeks cen__ - _številska spremenljivka_
+
+- __Stopnja inflacije__ - _številska spremenljivka_
+
+- __Stopnja brezposelnosti__ - _številska spremenljivka_
 
 \pagebreak
 
@@ -82,9 +97,9 @@ plot(graf1)
 ```
 
 ## Ugotovitve
-V prvih desetletjih po 2. svetovni vojni vidimo, da je BDP Amerike rastel precej konstantno. Za rast so imeli tudi odlične pogoje, saj vojno razdejanje Amerike ni doseglo v velikem obsegu. Ta leta so bila za Ameriko zelo pomembna, saj se je uveljavila kot svetovna velesila. V letih 1978-1982 se je BDP skoraj ustavil na približno 6.5 trilijonov $. Po letu 1982 pa BDP raste eksponentno, medtem, ko rast BDP-ja postopoma pada, kot se vidi tudi v tretjem grafu. To je bilo obdobje, ko je veliko držav tudi opustilo komunizem in so posledično začele ujemati ZDA v BDP. V letu 2008 je BDP opustošila recesija, ko je BDP padel za približno pol trilijona $. V naslednjih nekaj letih pa si je ekonomija nekoliko opomogla in BDP zopet začne postopoma rasti.
+V prvih desetletjih po 2. svetovni vojni vidimo, da je BDP Amerike rastel eksponentno. Za rast so imeli tudi odlične pogoje, saj vojno razdejanje Amerike ni doseglo v velikem obsegu. Ta leta so bila za Ameriko zelo pomembna, saj se je uveljavila kot svetovna velesila. V letih 1978-1982 se je BDP skoraj ustavil na približno 6.5 trilijonov $. Po letu 1982 pa BDP raste linearno. To je bilo obdobje, ko je veliko držav tudi opustilo komunizem in so posledično začele ujemati ZDA v BDP. V letu 2008 je svet opustošila recesija. Začela se je v Ameriki, vidimo tudi, da je BDP padel za približno pol trilijona $. V naslednjih nekaj letih pa si je ekonomija nekoliko opomogla in BDP zopet začne postopoma rasti.
 
-   Če si ogledamo graf kot celoto, vidimo da BDP raste eksponentno v času do leta 2000. Po letu 2000 je BDP raste občutno počasneje, vendar vseeno konstantna. 
+   Če si ogledamo graf kot celoto, vidimo da BDP raste eksponentno v času do leta 2000. Po letu 2000 BDP raste občutno počasneje, vendar vseeno konstantno. 
 
 \pagebreak
 
@@ -95,7 +110,7 @@ plot(graf2)
 ```
 
 ## Ugotovitve
-BDP per capita vidimo da se skozi čas spreminja precej podobno kot BDP, le da ima večja nihanja med leti. Predvidevam, da je razlog za tem odvisnost od še ene spremenljivke - torej število prebivalcev. Ta pa je po vojni zelo spreminjala. Kot zanimivost naj dodam, da je IMF leta 2015 ameriški BDP p.c. ocenil na 10. mesto, Svetovna banka na 9. mesto, CIA pa ga je postavila šele na 13. mesto.
+BDP per capita vidimo da se skozi čas spreminja precej podobno kot BDP, le da ima nekoliko večja nihanja med leti. Predvidevam, da je razlog za tem odvisnost od še ene spremenljivke - števila prebivalcev. Ta pa se je po vojni zelo spreminjala. Kot zanimivost naj dodam, da je IMF leta 2015 ameriški BDP p.c. ocenil na 10. mesto, Svetovna banka na 9. mesto, CIA pa ga je postavila šele na 13. mesto.
 
 \pagebreak
 
@@ -106,7 +121,7 @@ plot(graf3)
 ```
 
 ## Ugotovitve
-Graf stopnje rasti me je nekoliko presenetil, saj je skozi celotno obravnavano obdobje zelo volatilen. Vidimo, da je rast v prvih letih po vojni ogromna. Če pa pogledamo povprečje grafa pa vidimo, da rast počasi pada, kar je tudi smiselno, saj so ZDA med najbolj razvitimi državami in je hitra rast na takem nivoju razvitosti zmeraj težja. 
+Graf stopnje rasti me je nekoliko presenetil, saj je skozi celotno obravnavano obdobje zelo volatilen. Vidimo, da je rast v prvih letih po vojni ogromna. Če pa pogledamo povprečje grafa pa vidimo, da rast počasi pada, kar je tudi smiselno, saj je Amerika med najbolj razvitimi državami in je hitra rast na takem nivoju razvitosti zmeraj težja. 
 
 \pagebreak
 
@@ -117,7 +132,7 @@ plot(graf4)
 ```
 
 ## Ugotovitve
-Iz grafa indeksa cen, ki opisuje stopnje cen v potrošni košarici, sem ugotovil, da je kljub visoki stopnji rasti BDP-ja v prvih letih po vojni, naraščal počasi. To ugotovitev sem povezal z naslednjim grafom, ki je stopnja inflacije, ki kot vidimo v naslednjem grafu, je bila v začetku petdesetih letih prejšnjega stoletja izjemno visoka. Potem pa eksponentno raste do leta 1981. Po tem letu pa se eksponentna rast ustavi, vendar še naprej linearno narašča. V času recesije v letu 2008 se indeks cen zmanjša a hitro začne zopet rasti.
+Iz grafa indeksa cen, ki opisuje stopnje cen v potrošni košarici, sem ugotovil, da je kljub visoki stopnji rasti BDP-ja v prvih letih po vojni, naraščal počasi. To ugotovitev sem povezal z naslednjim grafom, ki je stopnja inflacije, ki kot vidimo v naslednjem grafu, je bila v začetku petdesetih letih prejšnjega stoletja izjemno visoka. Potem pa eksponentno raste do leta 1981. Po tem letu pa se eksponentna rast ustavi, vendar še naprej linearno narašča. V času recesije leta 2008 se indeks cen zmanjša a hitro začne zopet rasti.
 
 \pagebreak
 
@@ -128,9 +143,9 @@ plot(graf5)
 ```
 
 ## Ugotovitve
-Iz grafa inflacije sem si pojasnil marsikateri pojav iz prejšnjih grafov. Kot sem že omenil, je bila inflacije v začetku petdesetih let izjemno visoka, leta 1951 je dosegla kar 7.9%. Do sedemdesetih let je inflacija v povprečju rastla. V letih 1974 ter 1979-1981 pa je bila neobičajno visoka, ko se je gibala kar okoli 11%. Obdobju na prelomu desetletja je bilo označeno kot obdobje podivjane inflacije. S tem pojavom bi lahko pojasnil prelom grafov BDP, BDP p.c. ter indeksa cen, saj se vsi rahlo prelomijo v tem obdobju. Po letu 1981 pa v povprečju stopnja inflacije pada. 
+Iz grafa inflacije sem si pojasnil marsikateri pojav iz prejšnjih grafov. Kot sem že omenil, je bila inflacija v začetku petdesetih let izjemno visoka, leta 1951 je dosegla kar 7.9%. Do sedemdesetih let je v povprečju rastla. V letih 1974 ter 1979-1981 pa je bila neobičajno visoka, ko se je gibala okoli 11%. Ta čas so tudi označili kot obdobje podivjane inflacije. S tem pojavom bi lahko pojasnil obliko grafov BDP, BDP p.c. ter indeksa cen, saj se vsi rahlo prelomijo v tem obdobju. Po letu 1981 pa v povprečju stopnja inflacije pada. 
 
-Omeniti velja tudi leti 1955 in 2009, ko inflacija celo pade pod 0%. V obeh primerih je omenjene deflacije 0.4%. Deflacija leta 1955 je bila še v obdobju, ko le-ta ni bila neobičajen pojav. Naslednje leta 2009 pa je ravno v času krize. Nekatere države, npr. Kolorado so ta pojav poskusile rešiti z znižanjem minimalne plače, ki je povezana z stopnjo inflacije.
+Omeniti velja tudi leti 1955 in 2009, ko inflacija celo pade pod 0%. V obeh primerih je omenjene deflacije 0.4%. Deflacija leta 1955 je bila še v obdobju, ko le-ta ni bila neobičajen pojav. Naslednja - leta 2009 pa je ravno v času krize. Nekatere države, npr. Kolorado so ta pojav poskusile rešiti z znižanjem minimalne plače, ki je povezana z stopnjo inflacije.
 
 \pagebreak
 
@@ -140,7 +155,7 @@ plot(graf6)
 ```
 
 ## Ugotovitve
-Kot zadnjo obravnavano spremenljivko sem vzel stopnjo brezposelnosti. Zanimala me je Phillipsova povezava med stopnjo brezposelnosti in stopnjo inflacije. V petdesetih letih je namreč trdil, da ima država visoko stopnjo brezposelnosti v času nizke inflacije in obratno. To teorijo je stagflacija - visoka stopnja brezposelnosti in inflacije - v sedemdesetih letih nekoliko spodkopala. Po mojem mnenju in ugotavljanju iz grafov med tema dvema spremenljivkama neka povezava vendarle obstaja, kljub opazovanjem iz sedemdesetih let. Prav lepa povezava pa se vidi v času krize izpred približno 7 let, ko je stopnja inflacije izredno nizka - v 2009 celo negativna, stopnja brezposelnosti pa najvišja od leta 1950, z izjemo leta 1983.
+Kot zadnjo obravnavano spremenljivko sem vzel stopnjo brezposelnosti. Zanimala me je Phillipsova povezava med stopnjo brezposelnosti in stopnjo inflacije. V petdesetih letih je namreč trdil, da ima država visoko stopnjo brezposelnosti v času nizke inflacije in obratno. To teorijo je stagflacija - visoka stopnja brezposelnosti in inflacije - v sedemdesetih letih nekoliko spodkopala. Po mojem mnenju in ugotavljanju iz grafov med tema dvema spremenljivkama neka povezava vendarle obstaja, kljub opazovanjem iz sedemdesetih let. Prav lepa povezava pa se vidi v času krize, ko je stopnja inflacije izredno nizka - v 2009 celo negativna - stopnja brezposelnosti pa najvišja od leta 1950, z izjemo leta 1983.
 
 \pagebreak
 
@@ -157,7 +172,7 @@ plot(ZDA.K)
 ```
 ## Ugotovitve
 
-Daleč največji delež ameriškega BDP-ja je BDP Kalifornije - kar dobrih 15%. Naslednja zvezna država po velikosti BDP je Teksas - nekaj malega pod 10% BDP-ja. Tretja po velikosti pa je zvezna država New York - skoraj točno 9% BDP-ja. Torej vidimo, da je skupni delež treh najbogatejših zveznih držav kar dobrih 34% celotnega BDP. 
+Daleč največji delež ameriškega BDP-ja je BDP Kalifornije - kar dobrih 15%. Naslednja zvezna država po velikosti BDP-ja je Teksas - nekaj malega pod 10% BDP-ja. Tretja po velikosti pa je zvezna država New York - približno 9% BDP-ja. Torej vidimo, da je skupni delež treh najbogatejših zveznih držav kar dobrih 34% celotnega BDP. 
    
    Najrevnejše tri države po vrsti so Vermont, Wyoming in Montana z BDP-ji 31.1, 37.9 in 47.1 milijard $, kar skupaj predstavlja le 0.7% celotnega BDP. Največ revnejših držav je v centralni Ameriki, najbogatejše pa so z izjemo Teksasa večinoma na zahodni ali vzhodni obali. 
    
@@ -165,7 +180,7 @@ Daleč največji delež ameriškega BDP-ja je BDP Kalifornije - kar dobrih 15%. 
    
 \pagebreak
 
-# Aljaska in Havaji
+## Aljaska in Havaji
 
 ```{r zda_nk, echo=FALSE, warning=FALSE, results='hide', message=FALSE}
 plot(ZDA.NK)
@@ -173,9 +188,47 @@ plot(ZDA.NK)
 
 ## Ugotovitve
 
-   Aljaska spada med 5. najrevnejšo zvezno državo s približno 50.9 milijard $, torej le slabe 3 milijarde $ več od slovenskega BDP-ja, Havaji pa so 13. najrevnejša zvezna država z 82.5 milijard $. 
+   Aljaska je 5. najrevnejša zvezna država s približno 50.9 milijard $, torej le slabe 3 milijarde $ več od slovenskega BDP-ja, Havaji pa so z 82.5 milijardami $ 13. najrevnejša zvezna država. 
    
    Tu me ni nobena država pretirano šokirala. Aljaska ima le slabih 740 tisoč prebivalcev zato ima razumljivo nižji BDP. Havaji pa imajo po drugi strani s približno 1.42 milijona prebivalci in dobro razvitim turizmom razumljivo višji BDP. 
    
-   
-   
+\pagebreak
+
+# Analiza
+
+## Razdelitev zveznih držav na 5 skupin
+
+Podatke o BDP-ju po zveznih državah sem razdelil v 5 skupin, glede na višino BDP-ja. Državam, ki so najbližja povprečju svoje skupine sem dodal piko na mesto glavnega mesta ter ime zvezne države. Opisano je prikazano v spodnjem zemljevidu:
+
+```{r analiza, echo=FALSE, results='hide', message=FALSE, warning=FALSE}
+source("analiza/analiza.r", encoding = "UTF-8")
+```
+z
+```{r skupine, echo=FALSE}
+plot(ZEM1)
+```
+
+## Ugotovitve
+V skupini z najvišjim BDP po zvezni državi je le Kalifornija, saj izrazito odstopa od povprečja. 
+
+V skupini z drugim najvišjim BDP sta državi Texas in New York. Na zemljevidu sta označeni obe, kar ni presenetljivo, ker obe odstopata ravno enako od njunega povprečja.
+
+V skupini s sredinskim BDP so 4 države. Najbližje povprečju je Pennsylvania s 705.4 milijard $ BDP. 
+
+v skupini z drugim najnižjim BDP je nekaj več držav. Najbližje povprečju je Maryland z BDP 375.4 milijarde $. 
+
+V skupini z najnižjim BDP pa je največ držav. Najbližje povprečju je Nebraska z BDP-jom 117 milijard $.
+
+\pagebreak
+
+## Napoved ameriškega BDP-ja do leta 2030
+
+Za konec sem dodal še napoved ameriškega BDP v letih od 2016 do 2030 in podatke prikazal v spodnji tabeli:
+
+```{r napoved, echo=FALSE}
+kable(NAPOVED)
+```
+
+## Ugotovitve
+
+Menim, da napovedi za prvih nekaj let niso najbolj točne. Opazil sem, da že za leto 2016 program da napoved za manjši BDP kot v letu 2015, kar se mi zdi malo verjetno. Tabelo sem pa vključil zato, ker menim, da so napovedi proti koncu tabele, precej bolj točne. 

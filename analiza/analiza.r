@@ -44,7 +44,7 @@ ZEM1 <- ZEM1 + geom_point(data = capitals.cent, color = "black",
 
 
 ZEM1 <- ZEM1 + ggtitle("Centroidi")
-print(ZEM1)
+#print(ZEM1)
 
 
 ###
@@ -56,9 +56,9 @@ model.lm <- lm(data = gdp, Leto ~ gdp$`BDP (v trilijonih $)`)
 aprbdp2 <- graf1 + geom_smooth(method = "lm")
 sum(model.lm$residuals^2) # 782.3755
 
-### NAREDIM NAPOVEDI, ZA BDP V LETIH 2016:2050 V ZDA
+### NAREDIM NAPOVEDI, ZA BDP V LETIH 2016:2030 V ZDA
 
 model.lm <- lm(data = gdp, gdp$`BDP (v trilijonih $)`~  Leto  )
-NAPOVED <- predict(model.lm, data.frame(Leto = seq(2016,2050,1)))
-NAPOVED  <- data.frame(NAPOVED, row.names = (2016:2050))
+Napoved <- predict(model.lm, data.frame(Leto = seq(2016,2030,1)))
+NAPOVED  <- data.frame(Napoved, row.names = (2016:2030))
 
