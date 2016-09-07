@@ -11,6 +11,7 @@ gdp <- gdp %>% filter(Leto <= 2015 & Leto >= 1950)
 gdp <- gdp %>% arrange(Leto)
 
 
+
 naslov2 = "http://www.multpl.com/us-real-gdp-per-capita/table/by-year"
 gdppc <- readHTMLTable(naslov2, which=1, encoding = "UTF-8", stringsAsFactors = FALSE)
 gdppc[[1]] <- strapplyc(gdppc[[1]], "([0-9]+)$") %>% as.numeric()
